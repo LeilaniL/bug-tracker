@@ -1,4 +1,4 @@
-namespace ToDoList.Models
+namespace BugTracker.Models
 {
   public class Item
   {
