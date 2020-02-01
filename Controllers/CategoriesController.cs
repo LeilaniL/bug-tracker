@@ -34,16 +34,16 @@ namespace BugTracker.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Details(int id)
-    {
-      Category thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
-      // ViewBag.Items = _db.Items.Where(item => item.CategoryId == id);
-      List<Item> foundItems = new List<Item>(_db.Items.Where(item => item.CategoryId == id));
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      model.Add("Category", thisCategory);
-      model.Add("Items", foundItems);
-      return View(model);
-    }
+    // public ActionResult Details(int id)
+    // {
+    //   Category thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
+    //   // ViewBag.Items = _db.Items.Where(item => item.CategoryId == id);
+    //   List<Issue> foundIssues = new List<Issue>(_db.Issues.Where(item => item.CategoryId == id));
+    //   Dictionary<string, object> model = new Dictionary<string, object>();
+    //   model.Add("Category", thisCategory);
+    //   model.Add("Issues", foundIssues);
+    //   return View(model);
+    // }
 
     // public ActionResult Edit(int id)
     // {

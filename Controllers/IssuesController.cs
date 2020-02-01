@@ -7,20 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BugTracker.Controllers
 {
-  public class ItemsController : Controller
+  public class IssuesController : Controller
   {
     private readonly BugTrackerContext _db;
 
-    public ItemsController(BugTrackerContext db)
+    public IssuesController(BugTrackerContext db)
     {
       _db = db;
     }
 
-    public ActionResult Index()
-    {
-      List<Item> model = _db.Items.Include(items => items.Category).ToList();
-      return View(model);
-    }
+    // public ActionResult Index()
+    // {
+    //   List<Issue> model = _db.Issues.Include(Issues => Issues.Category).ToList();
+    //   return View(model);
+    // }
 
     public ActionResult Create()
     {
@@ -29,17 +29,17 @@ namespace BugTracker.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Item item)
+    public ActionResult Create(Issue issue)
     {
-      _db.Items.Add(item);
+      _db.Issues.Add(issue);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      Item thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-      return View(thisItem);
+      Issue thisIssue = _db.Issues.FirstOrDefault(Issues => Issues.IssueId == id);
+      return View(thisIssue);
     }
 
     // public ActionResult Edit(int id)

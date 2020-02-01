@@ -1,23 +1,25 @@
+@*
 @{
   Layout = "_Layout";
 }
 
 @using BugTracker.Models;
 
-<h2>Category Details</h2>
+<h2>Tag Details</h2>
 <hr />
-<h3>@Html.DisplayName(@Model["Category"].Name)</h3>
+<h3>@Html.DisplayName(@Model["Tag"].Name)</h3>
 
 <ul>
-@if (@Model["Items"].Count == 0)
+@if (@Model["Issues"].Count == 0)
 {
-  <p>no items found</p>
+  <p>no issues found in this Tag</p>
 }
 
-@foreach (Item item in @Model["Items"])
+@foreach (Issue issue in @Model["Issues"])
 {
-  <li>Description: @item.Description</li>
+  <li>Description: @issue.Description</li>
 }
 </ul>
 
 <p>@Html.ActionLink("Back to categories", "Index")</p>
+*@
