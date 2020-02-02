@@ -1,21 +1,32 @@
+
 @{
   Layout = "_Layout";
 }
-<h1>Create an Issue!</h1>
-@*
-@model BugTracker.Models.Issue
 
-<h4>Add a new task</h4>
+@using BugTracker.Models;
+@model BugTracker.Models.Issue;
+
+<h4>Add a new issue</h4>
 
 @using (Html.BeginForm())
 {
     @Html.LabelFor(model => model.Description)
     @Html.TextBoxFor(model => model.Description)
+    @* 
+    @Html.Label("Select category")
+    @Html.DropDownList("TagId") 
+    *@
+    
+ @foreach(Tag tag in ViewBag.tagList)
+  {
+    <div class="chip">
+      <label for=model.TagId>
+      @Html.RadioButtonFor(model => model.TagId, tag.TagId)
+      @tag.Name
+      </label>
+    </div>
+  }
 
-    @Html.LabelFor(model => model.Tag)
-    @Html.DropDownList("TagId")
-
-    <input type="submit" value="Add new Issue" class="btn btn-default" />
+    <input type="submit" value="Add new issue" />
 }
-<p>@Html.ActionLink("Show all Issues", "Index")</p>
-*@
+<p>@Html.ActionLink("Show All Issues", "Index")</p>

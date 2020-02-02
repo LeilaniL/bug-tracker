@@ -24,14 +24,18 @@ namespace BugTracker.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.TagId = new SelectList(_db.Tags, "TagId", "Name");
+      ViewBag.tagList = _db.Tags.ToList();
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Issue issue)
+    public ActionResult Create(Issue issue, int tagId)
     {
       _db.Issues.Add(issue);
+      if (tagId != 0)
+      {
+        _db.TagIssue.Add(new TagIssue() { TagId = tagId, IssueId = issue.IssueId });
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
