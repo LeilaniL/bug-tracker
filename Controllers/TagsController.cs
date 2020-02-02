@@ -3,71 +3,68 @@ using BugTracker.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BugTracker.Controllers
 {
-  public class IssuesController : Controller
+  public class TagsController : Controller
   {
     private readonly BugTrackerContext _db;
 
-    public IssuesController(BugTrackerContext db)
+    public TagsController(BugTrackerContext db)
     {
       _db = db;
     }
 
     public ActionResult Index()
     {
-      List<Issue> model = _db.Issues.ToList();
+      List<Tag> model = _db.Tags.ToList();
       return View(model);
     }
 
     public ActionResult Create()
     {
-      ViewBag.TagId = new SelectList(_db.Tags, "TagId", "Name");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Issue issue)
+    public ActionResult Create(Tag Tag)
     {
-      _db.Issues.Add(issue);
+      _db.Tags.Add(Tag);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      Issue thisIssue = _db.Issues.FirstOrDefault(Issues => Issues.IssueId == id);
-      return View(thisIssue);
+      Tag thisTag = _db.Tags.Include(tag => tag.Issues).ThenInclude(join => join.Issue).FirstOrDefault(tag => tag.TagId == id);
+      return View(thisTag);
     }
 
     // public ActionResult Edit(int id)
     // {
-    //   var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-    //   ViewBag.TagId = new SelectList(_db.Tags, "TagId", "Name");
-    //   return View(thisItem);
+    //   var thisTag = _db.Tags.FirstOrDefault(Tag => Tag.TagId == id);
+    //   return View(thisTag);
     // }
 
     // [HttpPost]
-    // public ActionResult Edit(Item item)
+    // public ActionResult Edit(Tag Tag)
     // {
-    //   _db.Entry(item).State = EntityState.Modified;
+    //   _db.Entry(Tag).State = EntityState.Modified;
     //   _db.SaveChanges();
     //   return RedirectToAction("Index");
     // }
 
     // public ActionResult Delete(int id)
     // {
-    //   var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-    //   return View(thisItem);
+    //   var thisTag = _db.Tags.FirstOrDefault(Tag => Tag.TagId == id);
+    //   return View(thisTag);
     // }
 
     // [HttpPost, ActionName("Delete")]
     // public ActionResult DeleteConfirmed(int id)
     // {
-    //   var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-    //   _db.Items.Remove(thisItem);
+    //   var thisTag = _db.Tags.FirstOrDefault(Tag => Tag.TagId == id);
+    //   _db.Tags.Remove(thisTag);
     //   _db.SaveChanges();
     //   return RedirectToAction("Index");
     // }

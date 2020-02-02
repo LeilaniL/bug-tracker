@@ -12,10 +12,10 @@
   <h3>No issues have been added yet!</h3>
 } 
 
-@* @foreach (Issue issue in Model)
+@foreach (Issue issue in Model)
 {
-  <li>@Html.ActionLink($"{issue.Description}", "Details", new { id = issue.IssueId }) | @issue.Tag.Name</li>
-} *@
+  <li>@Html.ActionLink($"{issue.Description}", "Details", new { id = issue.IssueId })</li>
+}
 
 <p>@Html.ActionLink("Add new Issue", "Create")</p>
 
