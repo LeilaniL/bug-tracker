@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BugTracker.Models;
 
-namespace bugTracker
+namespace BugTracker
 {
   public class Startup
   {
