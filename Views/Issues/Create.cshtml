@@ -16,16 +16,6 @@
     @Html.Label("Select category")
     @Html.DropDownList("TagId") 
     *@
-    
- @foreach(Tag tag in ViewBag.tagList)
-  {
-    <div class="chip">
-      <label for=model.TagId>
-      @Html.RadioButtonFor(model => model.TagId, tag.TagId)
-      @tag.Name
-      </label>
-    </div>
-  }
 
     <input type="submit" value="Add new issue" />
 }
