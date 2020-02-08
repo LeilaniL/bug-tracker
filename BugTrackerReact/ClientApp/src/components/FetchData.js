@@ -5,31 +5,29 @@ export class FetchData extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { forecasts: [], loading: true };
+    this.state = { issues: [], loading: true };
 
-    fetch('api/SampleData/WeatherForecasts')
+    fetch('api/Issues/IssueIndex')
       .then(response => response.json())
       .then(data => {
-        this.setState({ forecasts: data, loading: false });
+        this.setState({ issues: data, loading: false });
       });
   }
 
-  static renderForecastsTable(forecasts) {
+  static renderissuesTable(issues) {
     return (
       <table className='table table-striped'>
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+            <th>Issue ID</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.issueId}>
-              <td>{forecast.issueId}</td>
-              <td>{forecast.description}</td>
+          {issues.map(issue =>
+            <tr key={issue.issueId}>
+              <td>{issue.issueId}</td>
+              <td>{issue.description}</td>
             </tr>
           )}
         </tbody>
@@ -40,11 +38,11 @@ export class FetchData extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
+      : FetchData.renderissuesTable(this.state.issues);
 
     return (
       <div>
-        <h1>Weather forecast</h1>
+        <h1>Bugs Journal</h1>
         <p>This component demonstrates fetching data from the server.</p>
         {contents}
       </div>
