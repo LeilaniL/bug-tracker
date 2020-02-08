@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export class FetchData extends Component {
   static displayName = FetchData.name;
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = { forecasts: [], loading: true };
 
@@ -14,7 +14,7 @@ export class FetchData extends Component {
       });
   }
 
-  static renderForecastsTable (forecasts) {
+  static renderForecastsTable(forecasts) {
     return (
       <table className='table table-striped'>
         <thead>
@@ -27,11 +27,9 @@ export class FetchData extends Component {
         </thead>
         <tbody>
           {forecasts.map(forecast =>
-            <tr key={forecast.dateFormatted}>
-              <td>{forecast.dateFormatted}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
+            <tr key={forecast.issueId}>
+              <td>{forecast.issueId}</td>
+              <td>{forecast.description}</td>
             </tr>
           )}
         </tbody>
@@ -39,7 +37,7 @@ export class FetchData extends Component {
     );
   }
 
-  render () {
+  render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
       : FetchData.renderForecastsTable(this.state.forecasts);
