@@ -24,5 +24,25 @@ namespace BugTracker.Controllers
       List<Issue> model = _db.Issues.ToList();
       return model;
     }
+
+    [HttpPost("[action]")]
+    public ActionResult Create(Issue issue)
+    {
+      Console.WriteLine("POSTED!_____________________");
+      Console.WriteLine(issue.Description);
+      _db.Issues.Add(issue);
+      return RedirectToAction("IssueIndex");
+    }
+
+    //  public ActionResult Create(Issue issue, int tagId)
+    // {
+    //   _db.Issues.Add(issue);
+    //   if (tagId != 0)
+    //   {
+    //     _db.TagIssue.Add(new TagIssue() { TagId = tagId, IssueId = issue.IssueId });
+    //   }
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
   }
 }
