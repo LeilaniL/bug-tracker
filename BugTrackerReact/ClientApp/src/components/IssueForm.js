@@ -9,7 +9,7 @@ async function postIssue(values) {
     headers: {
       "content-type": "application/json"
     },
-    cache: "no-cache"
+    // cache: "no-cache"
   });
   return await response.json();
 }
