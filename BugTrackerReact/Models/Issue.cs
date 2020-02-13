@@ -8,6 +8,10 @@ namespace BugTracker.Models
     {
       this.Tags = new HashSet<TagIssue>();
     }
+    public Issue(string description) : this()
+    {
+      Description = description;
+    }
     public int IssueId { get; set; }
     public string Description { get; set; }
     public ICollection<TagIssue> Tags { get; set; }

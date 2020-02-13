@@ -26,11 +26,12 @@ namespace BugTracker.Controllers
     }
 
     [HttpPost("[action]")]
-    public ActionResult Create(Issue issue)
+    public ActionResult Create([FromBody] string issueValues)
     {
       Console.WriteLine("POSTED!_____________________");
-      Console.WriteLine(issue.Description);
-      _db.Issues.Add(issue);
+      Console.WriteLine(issueValues);
+      Issue newIssue = new Issue(issueValues);
+      _db.Issues.Add(newIssue);
       return RedirectToAction("IssueIndex");
     }
 
