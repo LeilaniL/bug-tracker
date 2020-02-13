@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-// TODO: import Models.Issues
 
 async function postIssue(values) {
-  //TODO: CREATE NEW ISSUE(VALUES)
+  console.log("ISSUE: ", values);
   const response = await fetch("api/Issues/Create", {
     method: "POST",
-    body: JSON.stringify(values)
+    body: JSON.stringify(values.Description),
+    headers: {
+      "content-type": "application/json"
+    },
+    cache: "no-cache"
   });
   return await response.json();
 }
