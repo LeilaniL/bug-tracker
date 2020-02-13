@@ -26,25 +26,12 @@ namespace BugTracker.Controllers
     }
 
     [HttpPost("[action]")]
-    public ActionResult Create([FromBody] dynamic issueValues)
+    public ActionResult Create([FromBody] string issueValues)
     {
-      Console.WriteLine("POSTED!_____________________");
-      Console.WriteLine(issueValues);
       Issue newIssue = new Issue(issueValues);
       _db.Issues.Add(newIssue);
       _db.SaveChanges();
       return RedirectToAction("IssueIndex");
     }
-
-    //  public ActionResult Create(Issue issue, int tagId)
-    // {
-    //   _db.Issues.Add(issue);
-    //   if (tagId != 0)
-    //   {
-    //     _db.TagIssue.Add(new TagIssue() { TagId = tagId, IssueId = issue.IssueId });
-    //   }
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
   }
 }
