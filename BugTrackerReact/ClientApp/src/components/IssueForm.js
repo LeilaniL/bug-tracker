@@ -1,15 +1,16 @@
+// TODO: get Index/Fetch Data component to render on redirect
+// Learned: content-type json needed, db.Save() needed, [FromBody]--else empty values posted--and restarting server even though "watch" is running
+
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 async function postIssue(values) {
-  console.log("ISSUE: ", values);
   const response = await fetch("api/Issues/Create", {
     method: "POST",
     body: JSON.stringify(values.Description),
     headers: {
       "content-type": "application/json"
     },
-    // cache: "no-cache"
   });
   return await response.json();
 }
@@ -26,11 +27,6 @@ export class IssueForm extends Component {
   }
 
   handleInputChange = (e) => {
-    // e.preventDefault();
-    // this.setState({
-    //   issueName: "Submitted!",
-    //   Description: "Submitted description"
-    // });
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -41,7 +37,6 @@ export class IssueForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     postIssue(this.state);
-    console.log("Submitted!");
     this.setState({
       // issueName: "Issue",
       Description: "More detailed description"
@@ -73,5 +68,4 @@ export class IssueForm extends Component {
       </Form>
     )
   }
-
 }
