@@ -54,12 +54,12 @@ export class IssueForm extends Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormGroup>
-          <Input className="text-primary" type="text" name="issueName" value={this.state.issueName} required
+          <Input className="text-primary" style={{ backgroundColor: "#3b3939" }} type="text" name="issueName" value={this.state.issueName} required
             onChange={this.handleInputChange}
             onFocus={this.clearValues} />
         </FormGroup>
         <FormGroup>
-          <Input className="text-success" type="textarea" id="Description" name="Description"
+          <Input className="text-success" style={{ backgroundColor: "#3b3939" }} type="textarea" id="Description" name="Description"
             value={this.state.Description}
             onChange={this.handleInputChange}
             onFocus={this.clearValues} />
