@@ -7,7 +7,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 async function postIssue(values) {
   const response = await fetch("api/Issues/Create", {
     method: "POST",
-    body: JSON.stringify(values.Description),
+    body: JSON.stringify(values),
     headers: {
       "content-type": "application/json"
     },
@@ -39,7 +39,8 @@ export class IssueForm extends Component {
     postIssue(this.state);
     this.setState({
       // issueName: "Issue",
-      Description: "More detailed description"
+      Description: "",
+      RightSteps: ""
     })
   }
 
@@ -61,6 +62,12 @@ export class IssueForm extends Component {
         <FormGroup>
           <Input className="text-success" style={{ backgroundColor: "#3b3939" }} type="textarea" id="Description" name="Description"
             value={this.state.Description}
+            onChange={this.handleInputChange}
+            onFocus={this.clearValues} />
+        </FormGroup>
+        <FormGroup>
+          <Input className="text-info" style={{ backgroundColor: "#3b3939" }} type="textarea" id="RightSteps" name="RightSteps"
+            value={this.state.RightSteps}
             onChange={this.handleInputChange}
             onFocus={this.clearValues} />
         </FormGroup>

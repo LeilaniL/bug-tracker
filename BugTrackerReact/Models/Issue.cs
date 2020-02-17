@@ -8,10 +8,12 @@ namespace BugTracker.Models
     public Issue()
     {
       this.Tags = new HashSet<TagIssue>();
+      Timestamp = DateTime.Now;
     }
-    public Issue(string description) : this()
+    public Issue(string description, string rightSteps) : this()
     {
       Description = description;
+      RightSteps = rightSteps;
     }
     public int IssueId { get; set; }
     public string Description { get; set; }
