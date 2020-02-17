@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,9 +27,10 @@ namespace BugTracker.Controllers
     }
 
     [HttpPost("[action]")]
-    public ActionResult Create([FromBody] string issueValues)
+    public ActionResult Create([FromBody] JObject input)
     {
-      Issue newIssue = new Issue(issueValues);
+      Issue newIssue = input.ToObject<Issue>();
+      System.Console.WriteLine("CONTROLLER: VALUES BELOW---------------");
       _db.Issues.Add(newIssue);
       _db.SaveChanges();
       return RedirectToAction("IssueIndex");
