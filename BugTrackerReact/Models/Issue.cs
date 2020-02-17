@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace BugTracker.Models
 {
@@ -14,6 +15,10 @@ namespace BugTracker.Models
     }
     public int IssueId { get; set; }
     public string Description { get; set; }
+    public string WrongSteps { get; set; }
+
+    public string RightSteps { get; set; }
+    public DateTime Timestamp { get; set; }
     public ICollection<TagIssue> Tags { get; set; }
   }
 }
