@@ -3,6 +3,7 @@
 
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
 
 async function postIssue(values) {
   const response = await fetch("api/Issues/Create", {
@@ -22,6 +23,8 @@ export class IssueForm extends Component {
     this.state = {
       // issueName: "Issue",
       Description: "More detailed description",
+      Redirect: false,
+      RightSteps: "",
       // issueTags: []
     }
   }
@@ -40,7 +43,8 @@ export class IssueForm extends Component {
     this.setState({
       // issueName: "Issue",
       Description: "",
-      RightSteps: ""
+      RightSteps: "",
+      Redirect: true
     })
   }
 
@@ -52,7 +56,7 @@ export class IssueForm extends Component {
   }
 
   render() {
-    return (
+    return this.state.Redirect ? <Redirect to="/fetch-data" /> : (
       <Form onSubmit={this.handleSubmit}>
         <FormGroup>
           <Input className="text-primary" style={{ backgroundColor: "#3b3939" }} type="text" name="issueName" value={this.state.issueName} required
