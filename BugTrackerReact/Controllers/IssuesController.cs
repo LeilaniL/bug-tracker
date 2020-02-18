@@ -30,7 +30,6 @@ namespace BugTracker.Controllers
     public ActionResult Create([FromBody] JObject input)
     {
       Issue newIssue = input.ToObject<Issue>();
-      System.Console.WriteLine("CONTROLLER: VALUES BELOW---------------");
       _db.Issues.Add(newIssue);
       _db.SaveChanges();
       return RedirectToAction("IssueIndex");
