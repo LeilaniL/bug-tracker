@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import Issue from './Issue';
 
+const textStyles = {
+  color: 'aqua'
+}
 export class FetchData extends Component {
   static displayName = FetchData.name;
 
@@ -16,22 +20,29 @@ export class FetchData extends Component {
 
   static renderissuesTable(issues) {
     return (
-      <table className='table table-striped'>
-        <thead>
-          <tr>
-            <th>Issue ID</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {issues.map(issue =>
-            <tr key={issue.issueId}>
-              <td>{issue.issueId}</td>
-              <td>{issue.description}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      // <table className='table table-striped' style={textStyles}>
+      //   <Issue />
+      //   <thead>
+      //     <tr>
+      //       <th>Issue ID</th>
+      //       <th>Description</th>
+      //     </tr>
+      //   </thead>
+      //   <tbody>
+      //     {issues.map(issue =>
+      //       <tr key={issue.issueId}>
+      //         <td>{issue.issueId}</td>
+      //         <td>{issue.description}</td>
+      //       </tr>
+      //     )}
+      //   </tbody>
+      // </table >
+      <div>
+        {issues.map(issue =>
+          <Issue description={issue.description} issueId={issue.issueId}
+            key={issue.issueId} />
+        )}
+      </div>
     );
   }
 
