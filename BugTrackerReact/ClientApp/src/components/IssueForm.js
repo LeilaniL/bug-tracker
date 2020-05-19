@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
+import testPic from '../img/text-input-caret.png';
 
 async function postIssue(values) {
   const response = await fetch("api/Issues/Create", {
@@ -25,6 +26,7 @@ export class IssueForm extends Component {
       Description: "More detailed description",
       Redirect: false,
       RightSteps: "",
+      CursorDisplay: true
       // issueTags: []
     }
   }
@@ -57,26 +59,27 @@ export class IssueForm extends Component {
 
   render() {
     return this.state.Redirect ? <Redirect to="/fetch-data" /> : (
-      <Form onSubmit={this.handleSubmit}>
-        <FormGroup>
-          <Input className="text-primary" style={{ backgroundColor: "#3b3939" }} type="text" name="issueName" value={this.state.issueName} required
+      <Form onFocus={() => !this.state.CursorDisplay} onSubmit={this.handleSubmit} style={{ margin: "auto", width: "33%" }}>
+        {/* <FormGroup>
+          <Input className="text-primary" style={{ backgroundColor: "transparent", outline: "none", border: "none" }} type="text" name="issueName" value={this.state.issueName} required
             onChange={this.handleInputChange}
             onFocus={this.clearValues} />
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup>
-          <Input className="text-success" style={{ backgroundColor: "#3b3939" }} type="textarea" id="Description" name="Description"
+          {this.state.CursorDisplay ? <img src={testPic} alt="test" style={{ width: "1em" }} /> : <Input style={{ color: "dark-gray", backgroundColor: "transparent", outline: "none", border: "none" }} type="textarea" id="Description" name="Description"
             value={this.state.Description}
             onChange={this.handleInputChange}
-            onFocus={this.clearValues} />
+            onFocus={this.clearValues} >
+          </Input>}
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Input className="text-info" style={{ backgroundColor: "#3b3939" }} type="textarea" id="RightSteps" name="RightSteps"
             value={this.state.RightSteps}
             onChange={this.handleInputChange}
             onFocus={this.clearValues} />
-        </FormGroup>
-        <Button color="info" type="submit">Save Issue</Button>
-      </Form>
+        </FormGroup> */}
+        <Button color="info" type="submit" style={{ float: "right" }}>Save Issue</Button>
+      </Form >
     )
   }
 }
