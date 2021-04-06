@@ -55,9 +55,9 @@ appsettings.json
 * MySql
 * Entity Framework Core
 
+-----
+
 ## License
 
-MIT License
-
-Copyright (c) 2020 Leilani Leach
+ [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) Copyright © 2021 Leilani Leach
 
